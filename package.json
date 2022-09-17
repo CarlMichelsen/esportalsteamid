@@ -1,0 +1,30 @@
+{
+  "name": "detailed-crawler",
+  "version": "1.0.0",
+  "description": "Detailed webscraper.",
+  "main": "index.js",
+  "scripts": {
+    "prebuild": "npm run lint",
+    "build": "tsc",
+    "lint": "eslint ./src/**",
+    "dev": "nodemon ./src/index.ts",
+    "start": "node ./dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.14",
+    "@typescript-eslint/eslint-plugin": "^5.33.0",
+    "@typescript-eslint/parser": "^5.33.0",
+    "eslint": "^8.22.0",
+    "nodemon": "^2.0.19",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "puppeteer": "^17.1.3"
+  },
+  "author": "Carl Lilholm Michelsen",
+  "license": "ISC"
+}

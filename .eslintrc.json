@@ -1,0 +1,6 @@
+{
+    "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+    "rules": {
+        // Additional, per-project rules...
+    }
+}
