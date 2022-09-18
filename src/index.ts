@@ -68,6 +68,9 @@ app.get("/status", (req, res) => {
 
 // start http server on preset port
 app.listen(port, async() => {
-    browser = await puppeteer.launch();
+    browser = await puppeteer.launch({
+        executablePath: process.env.CHROME_BIN,
+        args: ['--no-sandbox', '--disable-gpu', '--headless']
+    });
     console.log(`HTTP server started on localhost:${port}`);
 });
