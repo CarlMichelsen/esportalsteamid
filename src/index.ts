@@ -41,7 +41,7 @@ app.get("/esportal-steamid/:username", async (req, res) => {
                 responseObject.steamId = steamId;
                 cache.set(username, steamId);
             } else {
-                if (html != null) responseObject.transientError = true;
+                if (html == null) responseObject.transientError = true;
                 responseObject.success = false;
             }
         } else {
@@ -67,31 +67,3 @@ app.listen(port, async() => {
     });
     console.log(`HTTP server started on localhost:${port}`);
 });
-
-/*
-if (!steamId) {
-            const page = await browser.newPage();
-            const steamLink: string|null = await getSteamLinkForEsportalUser(username, page, viewport, userAgents);
-            steamId = parseSteamId(steamLink);
-            if (steamId) {
-                cache.set(username, steamId); // cache
-                console.log("scraped", username, steamId);
-            }
-            page.close();
-        } else {
-            console.log("found cached", username, steamId);
-            responseObject.cached = true;
-        }
-
-        if (steamId === null) {
-            const str = "Failed esportal request";
-            console.error(str);
-            responseObject.success = false;
-        }
-        responseObject.steamId = steamId;
-    } else {
-        const str = "No username";
-        console.error(str);
-        responseObject.success = false;
-    }
-*/
