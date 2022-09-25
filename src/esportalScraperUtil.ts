@@ -1,6 +1,7 @@
 import * as puppeteer from "puppeteer";
 
-export const parseSteamLinkFromHtml = (html:string): string|null => {
+export const parseSteamLinkFromHtml = (html:string|null): string|null => {
+    if (html == null) return null;
     const regexp = /user-profile-steam-link/g;
     const instance: RegExpExecArray|null = regexp.exec(html);
     if (instance) {
@@ -15,7 +16,7 @@ export const parseSteamLinkFromHtml = (html:string): string|null => {
     return null;
 }
 
-export const getSteamLinkForEsportalUser = async(username:string, page: puppeteer.Page, viewport?: puppeteer.Viewport, userAgentList?: string[]): Promise<string|null> => {
+export const getHtmlForEsportalUser = async(username:string, page: puppeteer.Page, viewport?: puppeteer.Viewport, userAgentList?: string[]): Promise<string|null> => {
     if (viewport) await page.setViewport(viewport);
     if (userAgentList) {
         const userAgentIndex = Math.round(Math.random()*(userAgentList.length-1));
@@ -23,8 +24,7 @@ export const getSteamLinkForEsportalUser = async(username:string, page: puppetee
         await page.setUserAgent(userAgent);
     }
     await page.goto(`https://esportal.com/da/profile/${username.trim()}`);
-    const html = await page.content();
-    return parseSteamLinkFromHtml(html);
+    return await page.content();
 }
 
 export const parseSteamId = (steamLink: string|null): string|null => {
