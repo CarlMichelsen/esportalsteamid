@@ -69,8 +69,7 @@ export class BrowserService
             }
         }
 
-        // if there is no steamLink the webrequest probably failed and this could be transient
-        steamIdResponse.transientError = !steamLink;
+        steamIdResponse.transientError = false; //never transient error for now
         steamIdResponse.success = false;
         return steamIdResponse;
     }
